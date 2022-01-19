@@ -6,10 +6,14 @@ export default function App() {
   const [url, setUrl] = useState('');
   const [go, setGo] = useState(false);
 
-  static extraNativeComponentConfig(goBack);
+  const runFirst = `
+      document.body.style.backgroundColor = 'red';
+      setTimeout(function() { window.alert('hi') }, 2000);
+      true; // note: this is required, or you'll sometimes get silent failures
+    `;
 
   function Error(){
-    console.log('DEU RUIM');
+    console.log(`DEU RUIM`);
     console.log('\n\n');
     alert('DEU RUIM!');
   }
@@ -20,11 +24,11 @@ export default function App() {
   }
 
   function Loading(){
-   return(
-    <Text style={{flex: 1, textAlign: 'center',}}>
-      CARREGANDO
-    </Text>
-   )
+    return(
+        <Text style={{flex: 1,textAlign: 'center',}}>
+          CARREGANDO
+        </Text>
+    );
   }
 
   if(go == false){
@@ -47,17 +51,21 @@ export default function App() {
     return(
       <>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => goBack()} style={styles.btnBack}>
+          <TouchableOpacity onPress={() => setGo(false)} style={styles.btnBack}>
                 <Text style={styles.txtButton}>BACK</Text>
             </TouchableOpacity>
         </View>
         <WebView 
-        originWhitelist={['*']}
+          originWhitelist={['*']}
           source={{ uri: url }}
           startInLoadingState={true}
           renderLoading={() => Loading()}
-          onError={() => Error()}
+          renderError={() => Error()}
           onLoad={() => End()}
+          overScrollMode='never'
+          setBuiltInZoomControls={false}
+          onMessage={(event) => {}}
+          injectedJavaScript={runFirst}
           />
       </>
     );
@@ -103,7 +111,7 @@ const styles = StyleSheet.create({
 
   //Parte 2
   header:{
-    marginTop: 40,
+    marginTop: 61,
     backgroundColor: '#abdf',
     height: 35,
     justifyContent: 'center',

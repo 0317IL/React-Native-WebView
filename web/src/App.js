@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import ToDoList from './components/ToDoList';
 
 export default function App() {
   const [txt, setTxt] = useState('');
@@ -22,7 +23,7 @@ export default function App() {
 
         <button className='button' onClick={() => setPage(1)}>Alert</button>
         <button className='button' onClick={() => setPage(2)}>Console.log</button>
-        <button className='button' onClick={() => setPage(1)}>Outro</button>
+        <button className='button' onClick={() => setPage(3)}>To Do List</button>
       </div>
     );
 
@@ -56,6 +57,10 @@ export default function App() {
           <button className='button' onClick={() => setPage(0)}>Voltar</button>
         </div>
       </div>
+    );
+  }else if(page === 3){  
+    return(
+      <ToDoList />
     );
   }
 }
