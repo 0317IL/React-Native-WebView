@@ -6,6 +6,27 @@ export default function App() {
   const [url, setUrl] = useState('');
   const [go, setGo] = useState(false);
 
+  static extraNativeComponentConfig(goBack);
+
+  function Error(){
+    console.log('DEU RUIM');
+    console.log('\n\n');
+    alert('DEU RUIM!');
+  }
+
+  function End(){
+    console.log('Carregou');
+    console.log('\n\n');
+  }
+
+  function Loading(){
+   return(
+    <Text style={{flex: 1, textAlign: 'center',}}>
+      CARREGANDO
+    </Text>
+   )
+  }
+
   if(go == false){
     return (
       <View style={styles.container}>
@@ -25,13 +46,18 @@ export default function App() {
   }else{
     return(
       <>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => setGo(false)} style={styles.btnBack}>
-              <Text style={styles.txtButton}>BACK</Text>
-          </TouchableOpacity>
-      </View>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => goBack()} style={styles.btnBack}>
+                <Text style={styles.txtButton}>BACK</Text>
+            </TouchableOpacity>
+        </View>
         <WebView 
+        originWhitelist={['*']}
           source={{ uri: url }}
+          startInLoadingState={true}
+          renderLoading={() => Loading()}
+          onError={() => Error()}
+          onLoad={() => End()}
           />
       </>
     );
