@@ -97,4 +97,24 @@
   border-radius: 3px;
 }
 
-/*  TASKS  */
+/*  EVENT STRING  */
+.container-ES{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(131, 211, 111);
+}
+
+.inpts{
+  margin: 20px;
+  background-color: #fff;
+  border: 3px solid #ebebeb;
+}
+
+.txt-inpts{
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}

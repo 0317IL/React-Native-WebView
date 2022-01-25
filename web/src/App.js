@@ -1,66 +1,25 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import './App.css';
-import ToDoList from './components/ToDoList';
+import Test2 from "./Pages/Test2";
+import Test from "./Pages/Test";
 
-export default function App() {
-  const [txt, setTxt] = useState('');
-  const [page, setPage] = useState(0);
-
-  const click = (a) => {
-   alert(`${a}`);
-   setTxt('');
-  }
-
-  const click2 = (a) => {
-   console.log(`${a}`);
-   setTxt('');
-  }
-
-  if(page === 0){
-    return(
-      <div className='container'>
-        <h1 className='txt'>Escolha uma opção</h1>
-
-        <button className='button' onClick={() => setPage(1)}>Alert</button>
-        <button className='button' onClick={() => setPage(2)}>Console.log</button>
-        <button className='button' onClick={() => setPage(3)}>To Do List</button>
-      </div>
-    );
-
-  }else if(page === 1){
-    return (
-      <div className='container-alert'>
-        <h1 className='txt'>TESTE EVENT ALERT</h1>
-
-        <div>
-          <input className='input' type='text' value={txt} onChange={(e) => setTxt(e.target.value)}/>
-          <input className='input-btn' type='submit' onClick={() => click(txt)}/>
-        </div>
-
-        <div className='back'>
-          <button className='button' onClick={() => setPage(0)}>Voltar</button>
-        </div>
-      </div>
-    );
-
-  }else if(page === 2){
-    return(
-      <div className='container-console'>
-        <h1 className='txt'>TESTE EVENT CONSOLE</h1>
-
-        <div>
-          <input className='input' type='text' value={txt} onChange={(e) => setTxt(e.target.value)}/>
-          <input className='input-btn' type='submit' onClick={() => click2(txt)}/>
-        </div>
-
-        <div className='back'>
-          <button className='button' onClick={() => setPage(0)}>Voltar</button>
-        </div>
-      </div>
-    );
-  }else if(page === 3){  
-    return(
-      <ToDoList />
-    );
-  }
+export default function App(){
+    const [page, setPage] = useState(0);
+    if(page === 0){
+        return(
+            <div style={{display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#ebebeb', alignItems: 'center', justifyContent: 'center'}}>
+                <h1 style={{marginBottom: 20}}>Escolha uma opção:</h1>
+                <button style={{width: 100, height: 40, backgroundColor: '#fff', borderRadius: 4, marginBottom: 20 }} onClick={() => setPage(1)}>Testar Eventos</button>
+                <button  style={{width: 150, height: 40,  backgroundColor: '#fff', borderRadius: 4}} onClick={() => setPage(2)}>Testar Envio de Dados</button>
+            </div>
+        );
+    }else if(page === 1){
+        return(
+            <Test state={setPage}/>
+            );
+    }else if(page === 2){
+        return(
+            <Test2 state={setPage}/>
+            );
+    }
 }
