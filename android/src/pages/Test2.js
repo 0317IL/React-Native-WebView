@@ -6,7 +6,7 @@ import GetUrl from '../components/GetUrl';
 
 export default function Test2({state}){
   const [txt, setTxt] = useState('');
-  const [url, setUrl] = useState('http://192.168.0.29:3000');
+  const [url, setUrl] = useState('');
   const [Page, SetPage] = useState(false);
   const webViewRef = useRef();
 

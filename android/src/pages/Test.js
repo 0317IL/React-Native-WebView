@@ -5,7 +5,7 @@ import { WebView } from 'react-native-webview';
 import GetUrl from '../components/GetUrl';
 
 export default function Test({state}) {
-  const [url, setUrl] = useState('http://192.168.0.29:3000');
+  const [url, setUrl] = useState('');
   const [go, setGo] = useState(false);
 
   function Error(){
