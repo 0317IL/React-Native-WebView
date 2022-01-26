@@ -11,8 +11,8 @@ export default function Test2({state}){
   const webViewRef = useRef();
 
   //Função para recebimento dos dados enviados da Web
-  function getDataToWeb(data) {
-    console.log('Dado do web: ' + data.nativeEvent.data);
+  function getDataToWeb(e) {
+    console.log('Dado do web: ' + JSON.parse(e.nativeEvent.data));
   }
 
   //Função para envio de dados do Mobile para Web

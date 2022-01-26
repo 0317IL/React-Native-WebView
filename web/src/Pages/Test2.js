@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 
 export default function Class({state}){
-  const [data, setData] = useState('');
+  const [txt, setTxt] = useState('');
 
     //Função de recebimento dos dados enviados do Mobile
-    document.addEventListener("message", function(event) {
-      setData(event.data)
+    document.addEventListener("message", function(event){
+      setTxt(event.data);
     });   
 
     //Função para envio de dados do Web para o Mobile
-    const sendDataToMobile = async () => {
-      window.ReactNativeWebView.postMessage(`${JSON.parse(data)}`);
-      setData('');
+    function sendDataToMobile() {
+      window.ReactNativeWebView.postMessage(`${JSON.stringify(txt)}`);
     };
-
+ 
     return(
       <>
         <div id='teste' style={{display: 'flex', flexDirection:'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: '#6751ff',}}>
-         {/* <input type={data} onChangeCapture={txt => setData(txt)} style={{width: 250, height: 25, backgroundColor: '#fff', borderColor: '#ebebeb', borderRadius3: 3}} /> */}
+         <input onChange={(e) => setTxt(e.target.value)} style={{width: 250, height: 25, backgroundColor: '#fff', borderColor: '#ebebeb', borderRadius3: 3}}></input>
 
           <div id='teste2' style={{marginBottom: 20, fontSize: 40}}></div>
             <button
